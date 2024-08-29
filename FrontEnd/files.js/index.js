@@ -19,17 +19,18 @@ function generateWorks(works) {
 
         // Création d'une balise img pour l'image du travail
         const workImage = document.createElement("img");
-        workImage.src = work.imageUrl;  // URL de l'image récupérée depuis l'API
-        workImage.alt = work.title;  // Titre utilisé comme texte alternatif
+        workImage.src = work.imageUrl;
+        workImage.alt = work.title;
 
-        // Création d'une balise h3 pour le titre du travail
         const workTitle = document.createElement("h3");
         workTitle.textContent = work.title;
 
+        const workCategory = document.createElement("p");
+        workCategory.textContent = work.Category;
         // Ajout de l'image et du titre à l'élément article
         worksElement.appendChild(workImage);
         worksElement.appendChild(workTitle);
-
+        worksElement.appendChild(workCategory);
         // Ajout de l'article à la galerie
         sectionGallery.appendChild(worksElement);
     });
@@ -37,3 +38,13 @@ function generateWorks(works) {
 
 // Appel de la fonction pour générer les travaux dans la galerie
 generateWorks(works);
+
+const buttonFilter = document.querySelector(".btn-filter");
+
+buttonFilter.addEventListener("click", function() {
+    const worksFilter = works.filter(function (work) {
+        return work.Category === Objets;
+    });
+    document.querySelector("#portfolio").innerHTML = "";
+    generateWorks(worksFilter);
+});
