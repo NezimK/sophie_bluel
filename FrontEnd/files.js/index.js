@@ -26,11 +26,13 @@ function generateWorks(works) {
         workTitle.textContent = work.title;
 
         const workCategory = document.createElement("p");
-        workCategory.textContent = work.Category;
+        workCategory.textContent = work.categoryId;
+
         // Ajout de l'image et du titre à l'élément article
         worksElement.appendChild(workImage);
         worksElement.appendChild(workTitle);
         worksElement.appendChild(workCategory);
+
         // Ajout de l'article à la galerie
         sectionGallery.appendChild(worksElement);
     });
@@ -39,12 +41,23 @@ function generateWorks(works) {
 // Appel de la fonction pour générer les travaux dans la galerie
 generateWorks(works);
 
-const buttonFilter = document.querySelector(".btn-filter");
+// Sélectionne tous les boutons filtres
+const buttonsFilter = document.querySelectorAll(".btn-filter");
 
-buttonFilter.addEventListener("click", function() {
-    const worksFilter = works.filter(function (work) {
-        return work.Category === Objets;
+buttonsFilter.forEach(button => {
+    button.addEventListener("click", function() {
+        const categoryId = button.getAttribute("data-category");
+
+        if (categoryId === "all") {
+            // Afficher tous les travaux
+            generateWorks(works);
+        } else {
+            // Filtrer les travaux par catégorie
+            const worksFilter = works.filter(function (work) {
+                return work.categoryId === parseInt(categoryId);
+            });
+
+            generateWorks(worksFilter);
+        }
     });
-    document.querySelector("#portfolio").innerHTML = "";
-    generateWorks(worksFilter);
 });
