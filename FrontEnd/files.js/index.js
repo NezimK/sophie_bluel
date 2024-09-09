@@ -4,6 +4,7 @@ const response = await fetch("http://localhost:5678/api/works");
 const works = await response.json();
 console.log(works);
 
+
 // Fonction qui génère les travaux
 function generateWorks(works) {
     // Récupération de l'élément du DOM qui accueillera la galerie
