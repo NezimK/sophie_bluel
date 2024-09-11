@@ -212,6 +212,14 @@ input[type="submit"]{
 	text-decoration: underline;
 }
 
+.inactive{
+	display: none;	
+}
+
+.active{
+	display: flex;
+}
+
 /******FOOTER *******/
 footer nav ul {
 	display: flex;
