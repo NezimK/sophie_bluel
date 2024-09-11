@@ -46,7 +46,7 @@ generateWorks(works);
 const buttonsFilter = document.querySelectorAll(".btn-filter");
 
 buttonsFilter.forEach(button => {
-    button.addEventListener("click", function() {
+    button.addEventListener("click", function () {
         const categoryId = button.getAttribute("data-category");
 
         if (categoryId === "all") {
@@ -61,4 +61,54 @@ buttonsFilter.forEach(button => {
             generateWorks(worksFilter);
         }
     });
+});
+
+export function estConnecte() {
+    return localStorage.getItem('authToken') !== null;
+
+}
+estConnecte();
+console.log(estConnecte());
+
+function modeEditeur() {
+    if (estConnecte()) {
+        let login = document.getElementById("login");
+        login.classList.add("inactive");
+        login.classList.remove("active");
+
+        let logout = document.getElementById("logout");
+        logout.classList.add("active");
+        logout.classList.remove("inactive");
+
+        let filter = document.querySelector(".filter");
+        filter.classList.add("inactive");
+        filter.classList.remove("active");
+
+        
+    } else {
+        let login = document.getElementById("login");
+        login.classList.add("active");
+        login.classList.remove("inactive");
+
+        let logout = document.getElementById("logout");
+        logout.classList.add("inactive");
+        logout.classList.remove("active");
+
+        let filter = document.querySelector(".filter");
+        filter.classList.add("active");
+        filter.classList.remove("inactive");
+    }
+}
+modeEditeur();
+
+export function deconnecter() {
+    localStorage.removeItem('authToken');
+    window.location.href = "index.html"; // Recharge la page après déconnexion
+}
+
+let logout = document.getElementById("logout");
+logout.addEventListener('click', function () {
+    localStorage.removeItem('authToken');
+    window.location.href = "index.html"; // Recharge la page après déconnexion
+
 });
