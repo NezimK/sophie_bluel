@@ -1,0 +1,47 @@
+.modale {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 630px;
+    height: 688px;
+    background-color: white;
+    border-radius: 10px;
+    /***display: none;****/
+}
+
+h2 {
+    display: flex;
+    justify-content: center;
+    color: #000;
+    text-align: center;
+    font-family: "Work Sans";
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+svg {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+
+}
+
+input[type="submit"] {
+    font-family: 'Syne';
+    font-weight: 700;
+    color: white;
+    background-color: #1D6154;
+    margin: 2em auto;
+    width: 180px;
+    text-align: center;
+    border-radius: 60px;
+}
+
+.modale_footer {
+    display: flex;
+}
