@@ -7,10 +7,10 @@
     height: 688px;
     background-color: white;
     border-radius: 10px;
-    /***display: none;****/
+    display: none;
 }
 
-h2 {
+.modale_title {
     display: flex;
     justify-content: center;
     color: #000;
@@ -22,7 +22,41 @@ h2 {
     line-height: normal;
 }
 
-svg {
+.banner {
+    display: flex;
+    justify-content: center;
+    background-color: #000;
+    color: white;
+    padding: 20px;
+    gap: 10px;
+}
+
+.banner_title {
+    color: #FFF;
+    text-align: center;
+    font-family: "Work Sans";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.edit_mode {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    margin-bottom: 30px;
+    margin-top: 100px;
+    gap: 10px;
+}
+
+.edit_button {
+    width: 15.58px;
+    height: 15.58px;
+    margin-left: 15px;
+}
+
+.close_button {
     width: 24px;
     height: 24px;
     position: absolute;
