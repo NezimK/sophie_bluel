@@ -23,19 +23,18 @@ document.addEventListener("DOMContentLoaded", function() {
         .then(response => {
             if (response.ok) {
                 return response.json(); // Convertir la réponse en JSON si c'est OK
-            } else {
-                throw new Error("Erreur lors de la connexion."); // Gestion de l'erreur si la réponse n'est pas OK
             }
+            prompt("Erreur lors de la connexion");
         })
         .then(data => {
-            // Sauvegarde du token dans le localStorage
-            localStorage.setItem("authToken", data.token);
+            if (data) {
+                // Sauvegarde du token dans le localStorage
+                localStorage.setItem("authToken", data.token);
 
-            // Redirection vers une page après la connexion réussie
-            window.location.href = "index.html"; // Remplacez cette URL par la page souhaitée
-        })
-        .catch(error => {
-            console.error("Erreur:", error); // Capturer et afficher l'erreur
+                // Redirection vers l'index après la connexion réussie
+                window.location.href = "index.html";
+                
+            }
         });
     });
 });
