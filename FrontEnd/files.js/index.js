@@ -84,6 +84,13 @@ function modeEditeur() {
         filter.classList.add("inactive");
         filter.classList.remove("active");
 
+        let banner = document.querySelector(".banner");
+        banner.classList.add("active");
+        banner.classList.remove("inactive");
+
+        let edit = document.querySelector(".edit");
+        edit.classList.add("active");
+        edit.classList.remove("inactive");
         
     } else {
         let login = document.getElementById("login");
@@ -97,6 +104,15 @@ function modeEditeur() {
         let filter = document.querySelector(".filter");
         filter.classList.add("active");
         filter.classList.remove("inactive");
+
+        let banner = document.querySelector(".banner");
+        banner.classList.add("inactive");
+        banner.classList.remove("active");
+
+        let edit = document.querySelector(".edit");
+        edit.classList.add("inactive");
+        edit.classList.remove("active");
+        
     }
 }
 modeEditeur();
