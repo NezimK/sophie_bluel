@@ -63,68 +63,100 @@ buttonsFilter.forEach(button => {
     });
 });
 
+// Fonction qui vérifie si un jeton d'authentification est stocké dans localStorage
 export function estConnecte() {
     return localStorage.getItem('authToken') !== null;
-
 }
+
 estConnecte();
 console.log(estConnecte());
 
+// Fonction pour gérer l'apparition des éléments en fonction de la connexion
 function modeEditeur() {
     if (estConnecte()) {
+
         let login = document.getElementById("login");
-        login.classList.add("inactive");
+        login.classList.add("inactive"); // Retire l'élément Login
         login.classList.remove("active");
 
         let logout = document.getElementById("logout");
-        logout.classList.add("active");
+        logout.classList.add("active"); // Affiche l'élément Logout
         logout.classList.remove("inactive");
 
         let filter = document.querySelector(".filter");
-        filter.classList.add("inactive");
+        filter.classList.add("inactive"); // Retire l'élément Filter
         filter.classList.remove("active");
 
         let banner = document.querySelector(".banner");
-        banner.classList.add("active");
+        banner.classList.add("active"); // Affiche l'élément Banner
         banner.classList.remove("inactive");
 
         let edit = document.querySelector(".edit");
-        edit.classList.add("active");
+        edit.classList.add("active"); // Affiche l'élément Edit
         edit.classList.remove("inactive");
-        
+
     } else {
+
         let login = document.getElementById("login");
-        login.classList.add("active");
+        login.classList.add("active"); // Affiche l'élément Login
         login.classList.remove("inactive");
 
         let logout = document.getElementById("logout");
-        logout.classList.add("inactive");
+        logout.classList.add("inactive"); // Retire l'élément Logout
         logout.classList.remove("active");
 
         let filter = document.querySelector(".filter");
-        filter.classList.add("active");
+        filter.classList.add("active"); // Affiche l'élément Filter
         filter.classList.remove("inactive");
 
         let banner = document.querySelector(".banner");
-        banner.classList.add("inactive");
+        banner.classList.add("inactive"); // Retire l'élément Banner
         banner.classList.remove("active");
 
         let edit = document.querySelector(".edit");
-        edit.classList.add("inactive");
+        edit.classList.add("inactive"); // Retire l'élément Edit
         edit.classList.remove("active");
-        
     }
 }
 modeEditeur();
 
+// Fonction pour déconnecter l'utilisateur
 export function deconnecter() {
-    localStorage.removeItem('authToken');
-    window.location.href = "index.html"; // Recharge la page après déconnexion
+    localStorage.removeItem('authToken'); // Supprime le jeton d'authentification de localStorage
+    window.location.href = "index.html"; // Recharge la page afficher les changements après déconnexion
 }
 
 let logout = document.getElementById("logout");
 logout.addEventListener('click', function () {
-    localStorage.removeItem('authToken');
+    localStorage.removeItem('authToken'); // Supprime le jeton d'authentification de localStorage
     window.location.href = "index.html"; // Recharge la page après déconnexion
-
 });
+
+
+const editButton = document.querySelector(".edit"); // Bouton pour ouvrir la modale
+const closeButton = document.querySelector(".close_button"); // Bouton pour fermer la modale
+const modale = document.querySelector(".modale"); // Élément modale
+
+// Fonction pour gérer l'affichage de la modale
+function manageModale() {
+    if (estConnecte()) {
+
+        editButton.addEventListener('click', () => {
+            modale.classList.add('active'); // Affiche la modale
+            modale.classList.remove('inactive');
+            console.log('Clicked');
+        });
+
+        closeButton.addEventListener('click', () => {
+            modale.classList.add('inactive'); // Cache la modale
+            modale.classList.remove('active');
+        });
+
+        modale.addEventListener('click', (event) => {
+            if (event.target != modale) {
+                closeModale();
+            }
+        });
+    }
+}
+manageModale();
