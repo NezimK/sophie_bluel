@@ -1,33 +1,3 @@
-.modale {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 630px;
-    height: 688px;
-    background-color: white;
-    border-radius: 10px;
-    display: none;
-}
-.modale.active {
-    display: block;
-}
-
-.modale.inactive {
-    display: none;
-}
-
-.modale_title {
-    display: flex;
-    justify-content: center;
-    color: #000;
-    text-align: center;
-    font-family: "Work Sans";
-    font-size: 26px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-}
 
 #banner {
     display: flex;
@@ -72,6 +42,79 @@
 
 }
 
+
+.modale {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 630px;
+    height: 688px;
+    background-color: red;
+    border-radius: 10px;
+    display: none;
+
+}
+.modale.active {
+    display: block;
+}
+
+.modale.inactive {
+    display: none;
+}
+
+.modale_title {
+    display: flex;
+    justify-content: center;
+    color: #000;
+    text-align: center;
+    font-family: "Work Sans";
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding-top: 3.5rem;
+    padding-bottom: 2rem;
+}
+
+.modale_body{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.modale_body article {
+    display: flex;
+    flex-basis: calc(20% - 20px); /* Prend 20% de la ligne (5 images par ligne) moins l'espacement */
+    padding-bottom: 35px;
+}
+
+.modale_body img {
+    width: 78.879px;
+    height: 105.34px;
+    object-fit: cover; 
+}
+
+.modale_footer input{
+    display: flex;
+
+}
+
+.modale_body .svg-overlay {
+    position: relative;
+    right: 19px;
+    top: 8px;
+    z-index: 999;
+
+}
+.modale_body .svg-overlay-background {
+    position: relative;
+    top: 5px;
+    right: 32px;
+    fill: black;
+
+}
+
 input[type="submit"] {
     font-family: 'Syne';
     font-weight: 700;
@@ -81,8 +124,4 @@ input[type="submit"] {
     width: 180px;
     text-align: center;
     border-radius: 60px;
-}
-
-.modale_footer {
-    display: flex;
 }
