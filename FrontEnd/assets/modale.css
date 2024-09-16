@@ -9,6 +9,13 @@
     border-radius: 10px;
     display: none;
 }
+.modale.active {
+    display: block;
+}
+
+.modale.inactive {
+    display: none;
+}
 
 .modale_title {
     display: flex;
@@ -22,7 +29,7 @@
     line-height: normal;
 }
 
-.banner {
+#banner {
     display: flex;
     justify-content: center;
     background-color: #000;
@@ -50,7 +57,7 @@
     gap: 10px;
 }
 
-.edit_button {
+.edit_logo {
     width: 15.58px;
     height: 15.58px;
     margin-left: 15px;
