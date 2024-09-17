@@ -45,18 +45,19 @@
 
 .modale {
     position: fixed;
-    top: 50%;
+    top: 43%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 630px;
     height: 688px;
-    background-color: red;
+    background-color: white;
     border-radius: 10px;
     display: none;
 
 }
 .modale.active {
     display: block;
+    
 }
 
 .modale.inactive {
@@ -74,7 +75,7 @@
     font-weight: 400;
     line-height: normal;
     padding-top: 3.5rem;
-    padding-bottom: 2rem;
+    padding-bottom: 2.5rem;
 }
 
 .modale_body{
@@ -121,7 +122,15 @@ input[type="submit"] {
     color: white;
     background-color: #1D6154;
     margin: 2em auto;
+    padding: 10px;
     width: 180px;
     text-align: center;
     border-radius: 60px;
+    border: none;
+}
+hr {
+    width: 70%;
+    border-color: #B3B3B3;
+    margin-top: 30px;
+    margin-bottom: 39px;
 }
