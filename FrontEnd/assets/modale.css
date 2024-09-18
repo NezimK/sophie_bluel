@@ -43,7 +43,8 @@
 }
 
 
-.modale {
+.modale,
+.modale_second {
     position: fixed;
     top: 43%;
     left: 50%;
@@ -52,9 +53,9 @@
     height: 688px;
     background-color: white;
     border-radius: 10px;
-    display: none;
 
 }
+
 .modale.active {
     display: block;
     
@@ -127,10 +128,53 @@ input[type="submit"] {
     text-align: center;
     border-radius: 60px;
     border: none;
+    margin-top: 40px
 }
-hr {
-    width: 70%;
-    border-color: #B3B3B3;
-    margin-top: 30px;
-    margin-bottom: 39px;
+
+#title,
+#categorie {
+    width: 455px;
+height: 51px;
+background: #FFF;
+box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
+border: none;
+}
+
+.line {
+    width: 73%;
+    border: 1px solid #B3B3B3;
+    margin-top: 40px;
+    margin: 20px auto;
+}
+
+.arrow {
+    position: relative;
+    top: 20px;
+    left: 20px;
+}
+.square_picture {
+    border: 1px solid #E8F1F6;
+    padding: 50px;
+    background-color: #E8F1F6;
+    width: 360px;
+    height: 86px;
+    margin: 20px auto;
+
+}
+
+.logo_picture {
+    display: flex;
+    margin: -34px auto;
+}
+
+.info_picture {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.type_picture {
+    display: flex;
+    justify-content: center;
 }
