@@ -136,6 +136,7 @@ logout.addEventListener('click', function () {
 const editButton = document.querySelector(".edit"); // Bouton pour ouvrir la modale
 const closeButton = document.querySelector(".close_button"); // Bouton pour fermer la modale
 const modale = document.querySelector(".modale"); // Élément modale
+const overlay = document.querySelector(".overlay");
 
 // Fonction pour gérer l'affichage de la modale
 function manageModale() {
@@ -144,24 +145,23 @@ function manageModale() {
         editButton.addEventListener('click', () => {
             modale.classList.add('active'); // Affiche la modale
             modale.classList.remove('inactive');
-            console.log('Clicked');
+            overlay.classList.add('active');
+            overlay.classList.remove('inactive');
         });
 
         closeButton.addEventListener('click', () => {
             modale.classList.add('inactive'); // Cache la modale
             modale.classList.remove('active');
+            overlay.classList.add('inactive');
+            overlay.classList.remove('active');
         });
 
-        function closeModale() {
-            modale.classList.add('inactive');
+        overlay.addEventListener('click', () => {
+            modale.classList.add('inactive'); // Cache la modale
             modale.classList.remove('active');
-        }        
-
-        modale.addEventListener('click', (event) => {
-            if (event.target != modale) {
-                closeModale();
-            }
-        });
+            overlay.classList.add('inactive');
+            overlay.classList.remove('active');
+        });     
     }
 }
 
@@ -207,3 +207,4 @@ function generateWorksModale(works) {
 }
 
 generateWorksModale(works);
+
