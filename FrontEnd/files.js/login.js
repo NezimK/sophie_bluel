@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     const formulaireUsers = document.getElementById("users-password");
+    const errorMessage = document.getElementById("error-message");
 
     formulaireUsers.addEventListener("submit", function(event) {
         event.preventDefault();
@@ -23,8 +24,12 @@ document.addEventListener("DOMContentLoaded", function() {
         .then(response => {
             if (response.ok) {
                 return response.json(); // Convertir la réponse en JSON si c'est OK
+            } else {
+                // Afficher un message d'erreur en cas de problème de connexion
+                errorMessage.textContent = "Erreur lors de la connexion. Veuillez vérifier vos informations.";
+                errorMessage.style.display = "block"; // Affiche le message d'erreur
+                throw new Error("Connexion échouée"); // Stopper la promesse ici
             }
-            prompt("Erreur lors de la connexion");
         })
         .then(data => {
             if (data) {
@@ -33,8 +38,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
                 // Redirection vers l'index après la connexion réussie
                 window.location.href = "index.html";
-                
             }
+        })
+        .catch(error => {
+            console.error("Erreur:", error);
         });
     });
 });
