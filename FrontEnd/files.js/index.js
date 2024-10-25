@@ -200,41 +200,52 @@ function generateWorksModale(works) {
     });
 }
 generateWorksModale(works);
+// Ajout du gestionnaire d'événements pour la suppression d'un travail
 document.addEventListener('click', function (event) {
-    // Vérifie si l'élément cliqué est une "svg-overlay"
-    if (event.target.closest('.svg-overlay')) {
-        event.preventDefault(); // Empêche tout comportement par défaut (si nécessaire)
-        
-        const svgOverlay = event.target.closest('.svg-overlay');
+    const svgOverlay = event.target.closest('.svg-overlay');
+    
+    if (svgOverlay) {
+        event.preventDefault();  // Empêche le comportement par défaut
+
         const workId = svgOverlay.getAttribute('data-id');
-        
-        if (workId) {
-            if (confirm("Êtes-vous sûr de vouloir supprimer ce travail ?")) {
-                // Effectue la requête DELETE
-                fetch(`http://localhost:5678/api/works/${workId}`, {
-                    method: 'DELETE',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${localStorage.getItem('authToken')}`
+
+        if (workId && confirm("Êtes-vous sûr de vouloir supprimer ce travail ?")) {
+            fetch(`http://localhost:5678/api/works/${workId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('authToken')}`
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Supprimer l'article de la modale
+                    svgOverlay.closest('article').remove();
+
+                    // Supprimer le travail de la galerie
+                    const workGalleryElement = document.querySelector(`.gallery article[data-id="${workId}"]`);
+                    if (workGalleryElement) {
+                        workGalleryElement.remove();
                     }
-                })
-                .then(response => {
-                    if (response.ok) {
-                        // Si la suppression sur le serveur a réussi, supprimer le travail de l'UI
-                        svgOverlay.closest('article').remove();
-                        alert("Travail supprimé avec succès.");
-                    } else {
-                        // Gestion des erreurs
-                        alert("Erreur lors de la suppression du travail. Veuillez réessayer.");
+
+                    // Mettre à jour le tableau works en retirant le travail supprimé
+                    const index = works.findIndex(work => work.id === parseInt(workId));
+                    if (index > -1) {
+                        works.splice(index, 1);  // Retirer le travail du tableau
                     }
-                })
-                .catch(error => {
-                    console.error("Erreur :", error);
-                });
-            }
+
+                    alert("Travail supprimé avec succès.");
+                } else {
+                    alert("Erreur lors de la suppression du travail. Veuillez réessayer.");
+                }
+            })
+            .catch(error => {
+                console.error("Erreur :", error);
+            });
         }
     }
 });
+
 
 
 
