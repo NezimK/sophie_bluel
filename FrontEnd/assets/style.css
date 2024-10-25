@@ -160,6 +160,24 @@ li:hover {
 	background-color: #1D6154;
 }
 
+.add_picture  {
+	cursor: pointer;
+}
+
+#previewImage {
+	display: none;
+}
+
+.error-message {
+	color: red;
+	display: none;
+}
+
+.div-error {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
 .gallery {
 	width: 100%;
 	display: grid;

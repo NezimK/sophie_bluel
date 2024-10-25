@@ -201,12 +201,16 @@ function generateWorksModale(works) {
 }
 generateWorksModale(works);
 document.addEventListener('click', function (event) {
+    // Vérifie si l'élément cliqué est une "svg-overlay"
     if (event.target.closest('.svg-overlay')) {
+        event.preventDefault(); // Empêche tout comportement par défaut (si nécessaire)
+        
         const svgOverlay = event.target.closest('.svg-overlay');
         const workId = svgOverlay.getAttribute('data-id');
         
         if (workId) {
             if (confirm("Êtes-vous sûr de vouloir supprimer ce travail ?")) {
+                // Effectue la requête DELETE
                 fetch(`http://localhost:5678/api/works/${workId}`, {
                     method: 'DELETE',
                     headers: {
@@ -231,6 +235,7 @@ document.addEventListener('click', function (event) {
         }
     }
 });
+
 
 
 const openSecondModalBtn = document.querySelector('.open-second-modal');
@@ -363,15 +368,7 @@ async function formSubmit(form) {
     form.appendChild(errorMessage); // Ajouter un message d'erreur au formulaire s'il n'existe pas déjà
 
     const imageFile = fileInput.files[0]; // Récupère le fichier image sélectionné
-
-    // On vérifie que tous les champs sont bien remplis
-    if (!imageFile || !titleInput.value || !categorySelect.value) {
-        errorMessage.textContent = 'Remplissez tous les champs';
-        errorMessage.style.display = 'block'; // Affiche le message d'erreur
-        errorMessage.style.color = 'red';
-        return; // Ne pas soumettre le formulaire si les champs ne sont pas remplis
-    }
-
+    
     const formData = new FormData();
     formData.append('image', imageFile); // Ajoute l'image sélectionnée
     formData.append('title', titleInput.value); // Ajoute le titre
@@ -393,7 +390,7 @@ async function formSubmit(form) {
             console.log(projets);
             // Met à jour la galerie avec le nouveau projet
             generateWorks(projets);
-
+            generateWorksModale(projets);
             // Cache le message d'erreur en cas de succès
             errorMessage.style.display = 'none';
 
@@ -422,6 +419,7 @@ addPictureBtn.addEventListener('click', async (event) => {
     event.preventDefault(); // Empêche l'envoi du formulaire si les champs ne sont pas remplis
     const form = document.querySelector('#photoForm');
     await formSubmit(form); // Fonction pour soumettre le formulaire
+    
 });
 
 // Vérifier les champs au chargement initial
