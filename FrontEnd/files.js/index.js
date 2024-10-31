@@ -4,7 +4,6 @@ const response = await fetch("http://localhost:5678/api/works");
 const works = await response.json();
 console.log(works);
 
-
 // Fonction qui génère les travaux
 function generateWorks(works) {
     // Récupération de l'élément du DOM qui accueillera la galerie
@@ -17,6 +16,9 @@ function generateWorks(works) {
     works.forEach(work => {
         // Création d'un élément article pour chaque travail
         const worksElement = document.createElement("article");
+
+        // Ajouter l'attribut data-id avec l'identifiant unique du travail
+        worksElement.setAttribute("data-id", work.id);
 
         // Création d'une balise img pour l'image du travail
         const workImage = document.createElement("img");
@@ -41,6 +43,7 @@ function generateWorks(works) {
 
 // Appel de la fonction pour générer les travaux dans la galerie
 generateWorks(works);
+
 
 // Sélectionne tous les boutons filtres
 const buttonsFilter = document.querySelectorAll(".btn-filter");
